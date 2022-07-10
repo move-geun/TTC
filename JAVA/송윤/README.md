@@ -79,7 +79,7 @@ public class RunStatementExample {
 
 
 
-## 🤿22.07.06
+## 🤿22.07.06 ~ 22.07.09
 
 ### 1. 변수
 
@@ -137,7 +137,7 @@ public class RunStatementExample {
 
 
 
-- char 타입 ('' 작은 따옴표)
+- char 타입 (' '작은 따옴표)
 
   문자 리터럴을 int 타입에 저장할 경우
 
@@ -149,7 +149,7 @@ public class RunStatementExample {
 
   
 
-- String 타입
+- String 타입 (" " 큰 따옴표)
 
   ```java
   String var1 = "A";
@@ -189,3 +189,107 @@ public class RunStatementExample {
     특별한 이유가 없는 한 실수 리터러를 사용할 떈 double 타입을 사용한다.
 
  
+
+#### (2) 타입 변환
+
+: Java의 경우 자동 타입 변환이 가능하며, 허용 범위가 작은 타입이 허용 범위가 큰 타입으로 저장될 때 발생
+ `byte < short < int < long < float < double`
+
+```JAVA
+byte a = 10;
+int b = a;
+
+// byte 타입의 a를 b에 int로 복사해서 변환할 수 있다.  
+```
+
+
+
+##### - 자동 타입 변환
+
+: 작은 허용 범위 타입을 큰 허용 범위 타입으로 저장하는 것
+
+- 자동 타입 변환의 예
+
+  ```java
+  // 정수 타입 => 실수 타입
+  long longValue = 5000000000L;
+  float floatValue = longValue; // 5.0E9f
+  double doubleValue = longValue; // 5.0E9
+  
+  // char => int (유니코드 값이 저장)
+  char charValue = 'A';
+  int intValue = charValue; // 65가 저장
+  
+  // byte => char (X)
+  byte의 허용범위가 더 넓기 때문에 컴파일 에러 발생
+  ```
+
+
+
+##### - 강제 타입 변환 (Casting)
+
+: 큰 허용 범위 타입을 작은 허용 범위 타입으로 강제로 나눠서 저장하는 것
+ () 괄호 연산자를 사용
+
+`작은 허용 범위 타입 = (작은 허용 범위 타입) 큰 허용 범위 타입`
+
+
+
+- 강제 타입 변환의 예
+
+  ```java
+  // int => char
+  int intValue = 65;
+  char charValue = (char) intValue; // "A"가 출력
+  
+  // double => int
+  double doubleValue = 3.14;
+  int intValue = (int) doubleValue; // 3 출력, 소수점 이하 버려짐
+  ```
+
+  
+
+##### - 정수 연산에서의 자동 타입 변환
+
+: int 타입보다 작은 byte, short 타입의 변수는 int 타입으로 자동 타입 변환되어 연산을 수행한다. 
+
+```java
+byte x = 10;
+byte y = 20;
+byte result = x + y // 컴파일 에러 
+int result = x + y // byte x, y는 int로 자동 타입 변환되어 result에 저장 된다. 
+    
+    
+// byte + int + long => long
+byte v1 = 10;
+int v2 = 20;
+long v3 = 1000L;
+long result = v1 + v2 + v3;
+```
+
+
+
+##### - 실수 연산에서의 자동 타입 변환
+
+```java
+double result = 1.2f (float) + 3.4 (double);  // 1.2f => 1.2 (double) 로 자동변환 되어 연산 된다. 
+
+// int 타입으로 연산을 해야 하는 경우 
+int intValue = 10;
+double doubleValue = 5.5;
+int result = intValue + (int) doubleValue; // int로 강제 변환
+
+
+// int를 double로 변환해야 하는 경우 
+int x = 1;
+int y = 2;
+double result = x / y; // 결과는 0.5가 아니라 0, 피연산자 모두 int 타입이기 때문에 
+
+=> 세 가지 방법이 존재, 둘중 하나 혹은 모두 double 타입으로 변환 후 연산 
+double result = (double) x / y;
+double result = x / (double) y;
+double result = (double) x / (double) y;
+
+double result = (double) (x/y) // 0.0이 출력, (x/y)가 먼저 연산 되기 때문
+```
+
