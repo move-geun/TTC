@@ -737,4 +737,60 @@ Outter: for(...) {
 - JVM 스택 영역
 
   : 메소드를 호출할 때 마다 프레임을 추가(push)하고 메소드가 종료되면 해당 프레임을 제거(pop) 하는 동작을 수행.
-   
+
+
+
+##### - null과 nullPointerException
+
+: 참조 타입 변수가 힙 영역의 객체를 참조하지 않는다는 뜻으로 null 값을 가질 수 있다. 
+  즉 값을 가지는 참조 타입 변수는 힙 영역에 생성 되고,  null로 초기화된 참조 변수는 스택 영역에 생성 된다.
+
+- NullPointerException 예시 
+
+  ```java
+  (1)
+  int[] intArray = null; // 배열 변수이므로 참조 변수이다.
+  intArray[0] = 10; // null 이기 때문에 이 변수가 참조하는 배열 객체가 없기 때문에 예외(Null Point Exception) 발생
+  
+  
+  String str = null; // String클래스 이므로 참조 타입
+  System.out.println("총 문자수 : " + str.length()); // str변수가 참조하는 String 객체가 없으므로 예외 발생
+  ```
+
+
+
+##### - String
+
+- 변수와 문자열
+
+```java
+String name;
+name = "신용권";
+String hobby = "자바";
+    
+// 변수(name, hobby)는 스택 영역에 생성되고, 문자열(신용권, 자바)은 각각 String객체로 생성,
+// 스택 영역의 변수가, 힙 영역의 String 객체를 참조한다.
+```
+
+- 객체 생성 연산자 (new)
+  : 직접 string 객체를 생성
+
+```java
+// 두 변수는 다른 객체를 참조함
+String name1 = new String("신용권");
+String name2 = new String("신용권");
+
+boolean result1 = name1.equals(name2); // true, 동일한 문자열인지 비교
+name1 == name2; // false, 같은 객체를 참조하는지 비교
+```
+
+
+
+- Garbage Collector
+  : 다음 코드 처럼 참조를 잃은 String객체의 경우 Garbage Collector를 구동시켜 메모리에서 자동 제거 
+
+```
+String hobby = "여행";
+hobby = null;
+```
+
