@@ -703,3 +703,94 @@ Outter: for(...) {
 ##### - continue문
 
 : for, while, do-while문 에서만 사용되며 continue문이 실행되면 반복문의 조건식으로 이동
+
+
+
+## 🌭22.07.12
+
+#### 4. 참조 타입
+
+#### (1) 참조 타입과 참조 변수
+
+자바는 크게 기본 타입 (정수, 실수, 논리)과 참조 타입으로 나뉜다.
+
+- 참조 타입
+  : 객체의 번지를 참조하는 타입으로 배열, 열거, 클래스, 인터페이스를 말한다.
+  실수, 정수 등은 실제 값이 저장 되지만 참조타입은 **번지**를 통해 객체를 참조한다.
+
+❔ **메모리 사용 영역** **(Runtime Data Area)**
+
+![JVM Run-Time Data Area 구조](https://tecoble.techcourse.co.kr/static/a0b18cc999920474a1852901e1e46ebf/6f641/2021-08-09-jvm-runtime-data-area-structure.png)
+
+- Method Area
+
+  : JVM이 시작할 때 생성되고 모든 스레드가 공유되는 영역
+
+- Heap Area
+
+  : 객체와 배열이 생성되는 영역
+    생성된 객체와 배열은 JVM의 변수나 다른 객체의 필드를 참조한다.
+    만일 참조하는 변수나 필드가 없다면 의미 없는 객체가 되기 때문에 JVM이 쓰레기로 취급하고 Garbage Collector를 실행시켜 자동      으로 제거.
+
+  
+
+- JVM 스택 영역
+
+  : 메소드를 호출할 때 마다 프레임을 추가(push)하고 메소드가 종료되면 해당 프레임을 제거(pop) 하는 동작을 수행.
+
+
+
+##### - null과 nullPointerException
+
+: 참조 타입 변수가 힙 영역의 객체를 참조하지 않는다는 뜻으로 null 값을 가질 수 있다. 
+  즉 값을 가지는 참조 타입 변수는 힙 영역에 생성 되고,  null로 초기화된 참조 변수는 스택 영역에 생성 된다.
+
+- NullPointerException 예시 
+
+  ```java
+  (1)
+  int[] intArray = null; // 배열 변수이므로 참조 변수이다.
+  intArray[0] = 10; // null 이기 때문에 이 변수가 참조하는 배열 객체가 없기 때문에 예외(Null Point Exception) 발생
+  
+  
+  String str = null; // String클래스 이므로 참조 타입
+  System.out.println("총 문자수 : " + str.length()); // str변수가 참조하는 String 객체가 없으므로 예외 발생
+  ```
+
+
+
+##### - String
+
+- 변수와 문자열
+
+```java
+String name;
+name = "신용권";
+String hobby = "자바";
+    
+// 변수(name, hobby)는 스택 영역에 생성되고, 문자열(신용권, 자바)은 각각 String객체로 생성,
+// 스택 영역의 변수가, 힙 영역의 String 객체를 참조한다.
+```
+
+- 객체 생성 연산자 (new)
+  : 직접 string 객체를 생성
+
+```java
+// 두 변수는 다른 객체를 참조함
+String name1 = new String("신용권");
+String name2 = new String("신용권");
+
+boolean result1 = name1.equals(name2); // true, 동일한 문자열인지 비교
+name1 == name2; // false, 같은 객체를 참조하는지 비교
+```
+
+
+
+- Garbage Collector
+  : 다음 코드 처럼 참조를 잃은 String객체의 경우 Garbage Collector를 구동시켜 메모리에서 자동 제거 
+
+```
+String hobby = "여행";
+hobby = null;
+```
+
