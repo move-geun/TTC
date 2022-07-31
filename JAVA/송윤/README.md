@@ -878,5 +878,51 @@ scores[1] = new int[3]; // 0, 1, 2
 
 
 
-##### - 객체를 참조하는 배열 
+##### - 객체를 참조하는 배열
 
+- 문자열 비교 ( equals) 
+
+```java
+String[] strArray = new String[3];
+strArray[0] = "Java";
+strArray[1] = "Java";
+strArray[2] = new String("Java")
+    
+// == 은 번지수를 비교하기 때문에 [0],[1]과 [2]는 false가 된다. 
+strArray[0].equlas(strArray[2]); // true
+```
+
+
+
+##### - 배열복사 
+
+- for문으로 복사 
+
+  ```java
+  for (){
+  	newIntArray[i] = oldIntArray[i];
+  }
+  // 두 배열의 길이가 다를 경우 new에는 기본값 0이 그대로 유지
+  ```
+
+- System.arraycopy() 
+
+  : 참조 타입 배열이 복사되면 복사되는 값이 객체의 번지이므로 동일한 항목을 참조한다. 
+
+  ```java
+  System.arraycopu(oldStrArray, 0, newStrArray, 0, oldStrArrya.length)
+  
+  // old의 0번부터 new의 0번부터 old의 길이 만큼 복사 하겠다.
+  ```
+
+- 향상된 for문
+
+  ```java
+  for (int score : scores) {
+  	sum = sum + score;
+  }
+  
+  // scores에서 값을 하나씩 꺼내와서 score에 할당하고 실행문 실행.
+  ```
+
+  
