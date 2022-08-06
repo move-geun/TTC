@@ -12,4 +12,5 @@ if (x > 0 && y > 0) {
   console.log(3);
 } else {
   console.log(4);
+  console.log(5);
 }
