@@ -30,7 +30,55 @@
     // 위의 방식으로 나눠서 써먹는다~!
     ```
 
+  
+  
+  
+  
+  
+  * JS map과 foreach의 차이점
+  
+    * `Array.prototype.forEach`
+  
+      ```javascript
+      const nums = [1,2,3];
+      const duble = [];
+      nums.forEach(x=>duble.push(x*2));
+      console.log(nums);			// [2, 4, 6]
+      ```
+  
+      `forEach`의 경우 자기 내부의 값들을 받아 반복문을 실행한다.
+  
+      `forEach`는 원본 배열을 변경하지 않고 반환값은 언제나 `undefined`다
+  
+    * `Array.prototype.map`
+  
+      ```javascript
+      const nums = [1,2,3];
+      const duble = nums.map(x=>x*2);
+      console.log(duble) 			// [2, 4, 6];
+      ```
+  
+      `map`의 경우도 forEach와 같이 자기 내부의 값들로 반복문을 실행한다.
+  
+      이 때, 콜백 함수의 반환값들로 구성된 새로운 배열을 반환한다!
+  
+      이 두가지의 코드를 비교해보면 forEach의 경우 `[]`를 생성하여 `push` 하여 새로운 배열을 만들었지만
+  
+      `map`의 경우는 다르다. 
+  
+  
+  
+  * `Set` 사용하여 중복 없애기
+  
+    ```javascript
+    const nums = [1,1,1,1,2];
+    const num = new Set(nums);
+    console.log(num) 			// Set(2) {1, 2}
+    // 이 때 Set의 길이를 알려면 .size를 통해 확인한다.
+    console.log(num.size)		// 2
+    ```
+  
     
-
+  
   
 
