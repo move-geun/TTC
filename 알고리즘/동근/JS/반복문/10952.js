@@ -1,3 +1,4 @@
+
 var input = require("fs")
   .readFileSync("/dev/stdin")
   .toString()
