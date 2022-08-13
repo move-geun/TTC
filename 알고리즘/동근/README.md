@@ -78,7 +78,43 @@
     console.log(num.size)		// 2
     ```
   
-    
-  
-  
 
+
+
+* length 와 size
+
+  * Array.length 
+
+  * 배열의 길이를 반환한다
+
+    ```javascript
+    let arr = [a,b,c,d];
+    console.log(arr.length);
+    // 4
+    ```
+
+  * String.length
+
+  * 문자열의 길이를 반환한다
+
+    ```javascript
+    let str = 'earth';
+    console.log(str.length);
+    // 5
+    ```
+
+  * Set.prototype.size
+
+  * 객체의 원소 수를 반환한다
+
+    ```javascript
+    let ob = new Set();
+    ob.add(1);
+    ob.add('hello');
+    console.log(ob.size);
+    // 2
+    ```
+
+    
+
+  
