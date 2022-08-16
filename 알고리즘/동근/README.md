@@ -78,7 +78,66 @@
     console.log(num.size)		// 2
     ```
   
-    
-  
-  
 
+
+
+* length 와 size
+
+  * Array.length 
+
+  * 배열의 길이를 반환한다
+
+    ```javascript
+    let arr = [a,b,c,d];
+    console.log(arr.length);
+    // 4
+    ```
+
+  * String.length
+
+  * 문자열의 길이를 반환한다
+
+    ```javascript
+    let str = 'earth';
+    console.log(str.length);
+    // 5
+    ```
+
+  * Set.prototype.size
+
+  * 객체의 원소 수를 반환한다
+
+    ```javascript
+    let ob = new Set();
+    ob.add(1);
+    ob.add('hello');
+    console.log(ob.size);
+    // 2
+    ```
+
+* reduce()
+
+  * 배열의 각 요소에 대해 파라미터로 입력받은 callback 함수를 실행, 하나의 리턴값을 반환하는 함수
+
+  * ` reduce(function(accumulator, currentValue, currentIndex, array), [initialValue])`
+
+    ```javascript
+    var input = require("fs").readFileSync("./test").toString().trim().split("\n");
+    const t = +input[0];
+    for (let i = 1; i <= t; i++) {
+      let nums = input[i].split(" ").map(Number);
+      let a = nums[0];
+      let avg = nums.reduce((sum, v) => (sum += v), -a);
+      avg /= a;
+      let cnt = 0;
+      for (let j = 1; j <= a; j++) {
+        if (nums[j] > avg) {
+          cnt++;
+        }
+      }
+      console.log(((cnt / a) * 100).toFixed(3) + "%");
+    }
+    
+    ```
+
+    
